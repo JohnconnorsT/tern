@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Añadir una dirección</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #f6f6f6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 25px 30px;
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      border: 1px solid #ddd;
+    }
+
+    .form-container h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 8px;
+    }
+
+    .form-container p.subtitle {
+      font-size: 13px;
+      color: #555;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #111;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #888;
+      border-radius: 3px;
+      font-size: 14px;
+      color: #111;
+    }
+
+    /* 🔵 Cambiado el color de foco a azul */
+    input:focus, textarea:focus {
+      border-color: #0073e6;
+      outline: none;
+      box-shadow: 0 0 3px rgba(0,115,230,0.4);
+    }
+
+    /* Checkbox azul */
+    input[type="checkbox"] {
+      accent-color: #0073e6;
+    }
+
+    small {
+      display: block;
+      color: #555;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .info-link {
+      display: inline-block;
+      font-size: 13px;
+      color: #0073e6;
+      text-decoration: none;
+      margin-top: 4px;
+    }
+
+    .info-link:hover {
+      text-decoration: underline;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .checkbox-group label {
+      font-weight: normal;
+      font-size: 14px;
+      color: #111;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: #FFD814;
+      border: 1px solid #FCD200;
+      color: #111;
+      font-weight: 600;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+
+    .btn-submit:hover {
+      background-color: #F7CA00;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Introducir una nueva dirección de envío</h2>
+    <p class="subtitle">Los campos marcados con asterisco * son obligatorios</p>
+
+      <div class="form-group">
+        <label for="name">Nombre completo (nombre y apellidos) *</label>
+        <input type="text" id="name" name="name" placeholder="Nombre y apellidos" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Número de teléfono *</label>
+        <input type="tel" id="phone" name="phone" required pattern="^\+?\d{7,15}$">
+        <small>Se puede usar para ayudar con la entrega</small>
+      </div>
+
+      <div class="form-group">
+        <label for="address1">Línea de dirección 1 *</label>
+        <input type="text" id="address1" name="address1" placeholder="Nombre y número de la calle" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address2">Línea de dirección 2</label>
+        <input type="text" id="address2" name="address2" placeholder="Apartamento, suite, unidad, edificio o piso">
+      </div>
+
+      <div class="form-group">
+        <label for="city">Ciudad *</label>
+        <input type="text" id="city" name="city" placeholder="Ciudad" required>
+      </div>
+
+      <div class="form-group">
+        <label for="province">Provincia</label>
+        <input type="text" id="province" name="province" placeholder="Escribe tu provincia">
+      </div>
+
+      <div class="form-group">
+        <label for="instructions">Instrucciones de entrega</label>
+        <textarea id="instructions" name="instructions" rows="3" placeholder="Añadir instrucciones de entrega"></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Usar esta dirección</button>
+    </form>
+  </div>
+
+</body>
+</html>
