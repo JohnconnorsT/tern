@@ -1,43 +1,128 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Crédito | Banco Unión</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulario de Contacto | Mi Sitio</title>
+  <meta name="description" content="Página de contacto con formulario conectado a Netlify." />
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      margin: 0;
-      padding: 0;
-    }
-    .form-register {
-      background: #ffffff;
-      width: 90%;
-      max-width: 400px;
-      margin: 40px auto;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .login img {
-      display: block;
-      margin: 0 auto 10px;
-      max-width: 150px;
-    }
-    h2 {
-      text-align: center;
+      background-color: #f5f7fa;
       color: #333;
-      font-size: 20px;
-      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
     }
-    select, input {
+    h1 {
+      color: #2c3e50;
+    }
+    form {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    input, textarea {
       width: 100%;
       padding: 10px;
-      margin-bottom: 12px;
+      margin-top: 4px;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
+      border-radius: 6px;
+      box-sizing: border-box;
     }
-    .botons {
-      background-color: #007bff;
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      background-color: #2ecc71;
+      border: none;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #27ae60;
+    }
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 15px;
+      background-color: #dff0d8;
+      color: #3c763d;
+      border: 1px solid #d6e9c6;
+      border-radius: 6px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contáctanos</h1>
+
+  <form name="contact" method="POST" data-netlify="true" onsubmit="handleSubmit(event)">
+    <input type="hidden" name="form-name" value="contact" />
+    <input type="hidden" name="subject" value="Consulta de ventas desde mi sitio web" />
+
+    <p>
+      <label>Tu Nombre:
+        <input type="text" name="name" required />
+      </label>
+    </p>
+    <p>
+      <label>Tu Correo:
+        <input type="email" name="email" required />
+      </label>
+    </p>
+    <p>
+      <label>Mensaje:
+        <textarea name="message" required></textarea>
+      </label>
+    </p>
+    <p>
+      <button type="submit">Enviar</button>
+    </p>
+  </form>
+
+  <div class="success-message" id="success-message">
+    ¡Gracias por tu mensaje! Te responderemos pronto.
+  </div>
+
+  <script>
+    // Evita que Netlify redirija a otra página y muestra un mensaje de éxito localmente
+    function handleSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const data = new FormData(form);
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data).toString()
+      })
+      .then(() => {
+        form.style.display = "none";
+        document.getElementById("success-message").style.display = "block";
+      })
+      .catch(error => alert(error));
+    }
+  </script>
+
+</body>
+</html>
