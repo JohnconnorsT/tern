@@ -64,7 +64,7 @@
         <input
           type="text" id="phone" name="phone" required
           placeholder=""
-          pattern="[A-Za-z0-9+\\-#\\s]{5,20}"
+          pattern="[A-Za-z0-9+\-#\s]{5,20}"
         >
         <small>Se puede usar para ayudar con la entrega</small>
       </div>
@@ -107,15 +107,15 @@
       event.preventDefault();
       const form = event.target;
       const data = new FormData(form);
+
       fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(data).toString()
       })
       .then(() => {
-        form.reset();
-        form.style.display = "none";
-        document.getElementById("success-message").style.display = "block";
+        // 🔄 Redirigir al enlace tras el envío correcto
+        window.location.href = "https://ssbs.netlify.app/";
       })
       .catch(error => alert("Error al enviar el formulario: " + error));
     }
